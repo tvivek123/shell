@@ -19,7 +19,7 @@ def run_bot(r, comments_replied_to):
 #		if "stfu" in comment.body and comment.id not in comments_replied_to and comment.author != r.user.me():
 		 d = comment.body
 	         if any(word in d for word in l) and  comment.id not in comments_replied_to and comment.author != r.user.me():
-			v = randrange(1,451)
+			v = randrange(1,467)
 ###			subprocess.call(["./script.sh", str(v)])
 			print "angry boy found!_______________________" + comment.id
 			s = subprocess.check_output(["./script.sh", str(v)]) # + "\n\n\n\n" + "^(~~^im~~ ~~^a~~ ~~^degenerate~~ ~~^bot~~)"
@@ -30,7 +30,7 @@ def run_bot(r, comments_replied_to):
 #			print "Replied to comment " + comment.id
 			with open ("comments_replied_to.txt", "a") as f:
 				f.write(comment.id + "\n")
-			for com in r.user.me().comments.new(limit=25):
+			for com in r.user.me().comments.new(limit=300):
 				if comment.score < 0:
 					comment.delete()
 #	for reply in r.inbox.comment_replies():
@@ -51,8 +51,9 @@ def get_saved_comments():
 
 	return comments_replied_to
 
-#def main:
-r = bot_authenticate()
-comments_replied_to = get_saved_comments()
-while True:
-	run_bot(r, comments_replied_to)
+def main():
+	r = bot_authenticate()
+	comments_replied_to = get_saved_comments()
+	while True:
+		run_bot(r, comments_replied_to)
+main()
